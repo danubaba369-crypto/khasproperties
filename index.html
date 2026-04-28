@@ -18,6 +18,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 
+    <link rel="icon" type="image/png" href="logo.png">
+
     <style>
         :root {
             --primary-accent: #FFFFFF;
@@ -47,6 +49,25 @@
             line-height: 1.6;
         }
 
+        /* App-Like Floating Viewport */
+        .app-container {
+            width: 94%;
+            max-width: 1400px;
+            margin: 15px auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Float Sections inside App Container */
+        section {
+            border-radius: 24px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border: 1px solid var(--glass-border);
+            background: rgba(255, 255, 255, 0.01);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
         /* Light Leaks for Premium Feel */
         .light-leak {
             position: fixed;
@@ -71,20 +92,25 @@
             left: -5%;
         }
 
-        /* Header */
+        /* Floating Header */
         header {
             position: fixed;
-            top: 0;
-            width: 100%;
+            top: 20px;
+            width: 90%;
+            max-width: 1360px;
+            left: 50%;
+            transform: translateX(-50%);
             z-index: 1000;
-            padding: 1.2rem 5%;
+            padding: 1rem 3%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(5, 5, 5, 0.7);
+            background: rgba(5, 5, 5, 0.75);
             backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--glass-border);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
             transition: 0.4s;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
         .logo-container {
@@ -94,16 +120,12 @@
         }
 
         .logo-box {
-            width: 50px;
-            height: 50px;
-            background: #fff;
-            padding: 5px;
-            border-radius: 8px;
+            width: 35px;
+            height: 35px;
+            background: transparent;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 1px solid var(--gold);
-            box-shadow: 0 0 15px rgba(201,168,76,0.3);
         }
 
         .logo-box img {
@@ -114,8 +136,8 @@
 
         .brand-name {
             font-weight: 800;
-            font-size: 1.3rem;
-            letter-spacing: 2px;
+            font-size: clamp(0.9rem, 4vw, 1.3rem);
+            letter-spacing: 1px;
             text-transform: uppercase;
         }
 
@@ -138,31 +160,33 @@
 
         /* Hero */
         .hero {
-            height: 100vh;
+            height: calc(100vh - 50px);
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 10%;
+            padding: 0 5%;
             position: relative;
+            background: radial-gradient(circle at center, rgba(201,168,76,0.05) 0%, transparent 70%);
         }
 
         .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            font-size: clamp(2.2rem, 10vw, 5.5rem);
             font-weight: 800;
             line-height: 1.1;
             margin-bottom: 1.5rem;
             background: var(--gold-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 15px rgba(201,168,76,0.2));
         }
 
         .hero p {
-            font-size: clamp(1rem, 2vw, 1.4rem);
+            font-size: clamp(0.9rem, 4vw, 1.2rem);
             color: var(--text-dim);
             max-width: 900px;
-            margin-bottom: 3rem;
+            margin-bottom: 2.5rem;
         }
 
         .cta-btn {
@@ -189,10 +213,7 @@
 
         /* Stats Section */
         .stats-section {
-            padding: 80px 5%;
-            background: rgba(255, 255, 255, 0.02);
-            border-top: 1px solid var(--glass-border);
-            border-bottom: 1px solid var(--glass-border);
+            padding: 60px 5%;
         }
 
         .stats-grid {
@@ -220,7 +241,7 @@
 
         /* Featured Listings */
         .listings {
-            padding: 120px 5%;
+            padding: 80px 5%;
         }
 
         .section-header {
@@ -295,8 +316,8 @@
 
         /* Shorts Section */
         .shorts-section {
-            padding: 120px 0;
-            background: #0a0a0a;
+            padding: 80px 0;
+            background: rgba(10, 10, 10, 0.5);
         }
 
         .shorts-section .section-header {
@@ -353,7 +374,7 @@
 
         /* Services */
         .services {
-            padding: 120px 5%;
+            padding: 80px 5%;
         }
 
         .services-grid {
@@ -392,7 +413,7 @@
 
         /* Reviews */
         .reviews {
-            padding: 120px 5%;
+            padding: 80px 5%;
             background: rgba(255, 255, 255, 0.01);
         }
 
@@ -439,9 +460,11 @@
 
         /* Footer */
         footer {
-            padding: 100px 5% 50px;
-            background: #000;
-            border-top: 1px solid var(--glass-border);
+            padding: 60px 5% 30px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 24px;
+            margin-bottom: 20px;
+            border: 1px solid var(--glass-border);
         }
 
         .footer-grid {
@@ -515,17 +538,17 @@
         /* WhatsApp Float */
         .whatsapp-float {
             position: fixed;
-            bottom: 40px;
-            right: 40px;
-            width: 70px;
-            height: 70px;
+            bottom: 30px;
+            right: 3%;
+            width: 65px;
+            height: 65px;
             background: #25D366;
             color: #fff;
-            border-radius: 50%;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
+            font-size: 2.2rem;
             box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
             z-index: 2000;
             text-decoration: none;
@@ -539,12 +562,32 @@
             100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
         }
 
-        /* Responsive */
+        /* Responsive Fluid Edges */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 3.5rem; }
-            .section-header h2 { font-size: 2.5rem; }
-            header { padding: 1rem 5%; }
-            .brand-name { font-size: 1rem; }
+            .app-container {
+                width: 96%;
+                margin: 8px auto;
+            }
+            header {
+                width: 96%;
+                top: 8px;
+                padding: 0.6rem 3%;
+                gap: 5px;
+            }
+            .logo-container {
+                gap: 0.5rem;
+            }
+            .hero h1 { font-size: clamp(2rem, 12vw, 3rem); }
+            .section-header h2 { font-size: 2rem; }
+            .nav-cta { padding: 8px 12px; font-size: 0.75rem; letter-spacing: 0; }
+            .whatsapp-float {
+                bottom: 15px;
+                right: 3%;
+                width: 50px;
+                height: 50px;
+                font-size: 1.6rem;
+                border-radius: 12px;
+            }
         }
     </style>
 </head>
@@ -558,10 +601,12 @@
             <div class="logo-box">
                 <img src="logo.png" alt="Khas Properties Logo">
             </div>
-            <div class="brand-name">Khas Properties</div>
+            <div class="brand-name" style="color: var(--gold-light); text-shadow: 0 0 10px rgba(201,168,76,0.3);">Khas Properties</div>
         </div>
         <a href="https://wa.me/923225223620" class="nav-cta">Inquire Now</a>
     </header>
+
+    <div class="app-container">
 
     <section class="hero">
         <h1 class="gsap-hero">The Standard of<br>Excellence.</h1>
@@ -660,6 +705,11 @@
                 <i class="fas fa-handshake"></i>
                 <h3>Property Sales</h3>
                 <p>Maximize your property's value with our elite network and marketing strategies.</p>
+            </div>
+            <div class="service-box gsap-reveal">
+                <i class="fas fa-tools"></i>
+                <h3>Construction</h3>
+                <p>Top-tier construction and architectural services for luxury residences and commercial projects.</p>
             </div>
             <div class="service-box gsap-reveal">
                 <i class="fas fa-tasks"></i>
@@ -767,6 +817,8 @@
         </div>
     </footer>
 
+    </div> <!-- End App Container -->
+
     <a href="https://wa.me/923225223620" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
@@ -801,11 +853,13 @@
         window.addEventListener('scroll', () => {
             const header = document.querySelector('header');
             if (window.scrollY > 50) {
-                header.style.padding = '0.8rem 5%';
+                header.style.padding = '0.6rem 3%';
                 header.style.background = 'rgba(5, 5, 5, 0.9)';
+                header.style.boxShadow = '0 15px 40px rgba(0,0,0,0.7)';
             } else {
-                header.style.padding = '1.2rem 5%';
-                header.style.background = 'rgba(5, 5, 5, 0.7)';
+                header.style.padding = '1rem 3%';
+                header.style.background = 'rgba(5, 5, 5, 0.75)';
+                header.style.boxShadow = '0 10px 30px rgba(0,0,0,0.5)';
             }
         });
     </script>
