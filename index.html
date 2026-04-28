@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khas Properties | Premium Real Estate Sales & Management Lahore</title>
+    <meta name="description" content="Khas Properties Pvt. Ltd. Based in Gulberg, Lahore. Expert property sales, management, and investment consultation in premium sectors of Lahore.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+
+    <style>
+        :root {
+            --primary-accent: #FFFFFF;
+            --secondary-accent: #B0B0B0;
+            --gold: #C9A84C;
+            --gold-light: #E8C97A;
+            --gold-gradient: linear-gradient(135deg, #E8C97A 0%, #C9A84C 50%, #A07830 100%);
+            --deep-black: #050505;
+            --silver-gradient: linear-gradient(135deg, #FFFFFF 0%, #A0A0A0 100%);
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(201, 168, 76, 0.15);
+            --text-main: #FFFFFF;
+            --text-dim: rgba(255, 255, 255, 0.6);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        body {
+            background-color: var(--deep-black);
+            color: var(--text-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Light Leaks for Premium Feel */
+        .light-leak {
+            position: fixed;
+            width: 50vw;
+            height: 50vw;
+            border-radius: 50%;
+            filter: blur(150px);
+            z-index: -1;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        .leak-1 {
+            background: radial-gradient(circle, var(--gold), transparent);
+            top: -10%;
+            right: -5%;
+        }
+
+        .leak-2 {
+            background: radial-gradient(circle, var(--gold-light), transparent);
+            bottom: -10%;
+            left: -5%;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 1.2rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(5, 5, 5, 0.7);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            transition: 0.4s;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+        }
+
+        .logo-box {
+            width: 50px;
+            height: 50px;
+            background: #fff;
+            padding: 5px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid var(--gold);
+            box-shadow: 0 0 15px rgba(201,168,76,0.3);
+        }
+
+        .logo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .brand-name {
+            font-weight: 800;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .nav-cta {
+            padding: 12px 25px;
+            background: var(--gold-gradient);
+            color: #000;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 0.9rem;
+            border-radius: 5px;
+            transition: 0.3s;
+            box-shadow: 0 5px 20px rgba(201,168,76,0.3);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(201,168,76,0.5);
+        }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 10%;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            color: var(--text-dim);
+            max-width: 900px;
+            margin-bottom: 3rem;
+        }
+
+        .cta-btn {
+            padding: 22px 55px;
+            background: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold-light);
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-btn:hover {
+            background: var(--gold-gradient);
+            color: #000;
+            box-shadow: 0 0 30px rgba(201,168,76,0.5);
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 80px 5%;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid var(--glass-border);
+            border-bottom: 1px solid var(--glass-border);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-item p {
+            color: var(--text-dim);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Featured Listings */
+        .listings {
+            padding: 120px 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-header h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-dim);
+            font-size: 1.2rem;
+        }
+
+        .listing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .listing-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .listing-card:hover {
+            transform: translateY(-15px);
+            border-color: var(--gold);
+            box-shadow: 0 20px 60px rgba(201,168,76,0.15);
+        }
+
+        .listing-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .listing-content {
+            padding: 2.5rem;
+        }
+
+        .listing-tag {
+            background: linear-gradient(135deg, rgba(201,168,76,0.2), rgba(232,201,122,0.1));
+            border: 1px solid rgba(201,168,76,0.4);
+            color: var(--gold-light);
+            padding: 6px 15px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+
+        .listing-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+
+        .listing-price {
+            font-size: 2rem;
+            font-weight: 800;
+            margin: 1.5rem 0;
+            color: #fff;
+        }
+
+        /* Shorts Section */
+        .shorts-section {
+            padding: 120px 0;
+            background: #0a0a0a;
+        }
+
+        .shorts-section .section-header {
+            padding: 0 5%;
+        }
+
+        .shorts-scroll-wrapper {
+            overflow-x: auto;
+            overflow-y: hidden;
+            display: flex;
+            gap: 1.5rem;
+            padding: 2rem 5% 3rem;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold) #111;
+        }
+
+        .shorts-scroll-wrapper::-webkit-scrollbar {
+            height: 5px;
+        }
+
+        .shorts-scroll-wrapper::-webkit-scrollbar-track {
+            background: #111;
+        }
+
+        .shorts-scroll-wrapper::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
+        }
+
+        .short-card {
+            flex: 0 0 280px;
+            aspect-ratio: 9/16;
+            background: var(--glass);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid rgba(201,168,76,0.2);
+            transition: 0.4s;
+            scroll-snap-align: start;
+        }
+
+        .short-card:hover {
+            transform: scale(1.03);
+            border-color: var(--gold);
+            box-shadow: 0 0 30px rgba(201,168,76,0.2);
+        }
+
+        .short-card iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* Services */
+        .services {
+            padding: 120px 5%;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-box {
+            padding: 4rem 3rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 30px;
+            text-align: center;
+            transition: 0.4s;
+        }
+
+        .service-box:hover {
+            background: rgba(255,255,255,0.06);
+            transform: translateY(-10px);
+        }
+
+        .service-box:hover {
+            background: rgba(201,168,76,0.06);
+            border-color: rgba(201,168,76,0.4);
+            transform: translateY(-10px);
+        }
+
+        .service-box i {
+            font-size: 3.5rem;
+            margin-bottom: 2rem;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Reviews */
+        .reviews {
+            padding: 120px 5%;
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .review-card {
+            padding: 3rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 25px;
+        }
+
+        .review-card p {
+            font-style: italic;
+            color: var(--text-dim);
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .reviewer {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .reviewer h4 {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .review-card:hover {
+            border-color: rgba(201,168,76,0.4);
+            background: rgba(201,168,76,0.04);
+        }
+
+        .stars {
+            color: var(--gold);
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 100px 5% 50px;
+            background: #000;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 4rem;
+            margin-bottom: 5rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        .footer-brand p {
+            color: var(--text-dim);
+            max-width: 400px;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 2rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #fff;
+            padding-right: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .social-icons a {
+            width: 50px;
+            height: 50px;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.2rem;
+            transition: 0.4s;
+        }
+
+        .social-icons a:hover {
+            background: #fff;
+            color: #000;
+            transform: rotate(360deg);
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 40px;
+            right: 40px;
+            width: 70px;
+            height: 70px;
+            background: #25D366;
+            color: #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            box-shadow: 0 15px 30px rgba(37, 211, 102, 0.4);
+            z-index: 2000;
+            text-decoration: none;
+            transition: 0.4s;
+            animation: pulse-wa 2s infinite;
+        }
+
+        @keyframes pulse-wa {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 20px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3.5rem; }
+            .section-header h2 { font-size: 2.5rem; }
+            header { padding: 1rem 5%; }
+            .brand-name { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="light-leak leak-1"></div>
+    <div class="light-leak leak-2"></div>
+
+    <header>
+        <div class="logo-container">
+            <div class="logo-box">
+                <img src="logo.png" alt="Khas Properties Logo">
+            </div>
+            <div class="brand-name">Khas Properties</div>
+        </div>
+        <a href="https://wa.me/923225223620" class="nav-cta">Inquire Now</a>
+    </header>
+
+    <section class="hero">
+        <h1 class="gsap-hero">The Standard of<br>Excellence.</h1>
+        <p class="gsap-hero">Khas Properties Pvt. Ltd. is Lahore's leading real estate sales and management company, specializing in premium residential and commercial investments in Gulberg and beyond.</p>
+        <a href="#listings" class="cta-btn gsap-hero">Explore Properties</a>
+    </section>
+
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item gsap-reveal">
+                <h2 class="counter">10+</h2>
+                <p>Years Experience</p>
+            </div>
+            <div class="stat-item gsap-reveal">
+                <h2 class="counter">1.8K+</h2>
+                <p>Happy Clients</p>
+            </div>
+            <div class="stat-item gsap-reveal">
+                <h2 class="counter">500M+</h2>
+                <p>Assets Managed</p>
+            </div>
+            <div class="stat-item gsap-reveal">
+                <h2 class="counter">4.9★</h2>
+                <p>Google Rating</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="listings" id="listings">
+        <div class="section-header">
+            <h2>Premium <span style="opacity: 0.5;">Portfolios</span></h2>
+            <p>Curated investment opportunities in Lahore's most prestigious sectors.</p>
+        </div>
+        <div class="listing-grid">
+            <div class="listing-card gsap-reveal">
+                <img src="five_marla_house.png" alt="5 Marla Luxury Villa" class="listing-img">
+                <div class="listing-content">
+                    <span class="listing-tag">Exclusive Listing</span>
+                    <h3>Modern 5 Marla Villa</h3>
+                    <p>Gulberg III - Premium Location</p>
+                    <div class="listing-price">Inquire for Price</div>
+                    <a href="https://wa.me/923225223620?text=Interested in 5 Marla Villa" class="nav-cta" style="display: block; text-align: center;">View Details</a>
+                </div>
+            </div>
+            <div class="listing-card gsap-reveal">
+                <img src="ten_marla_house.png" alt="10 Marla Modern Home" class="listing-img">
+                <div class="listing-content">
+                    <span class="listing-tag">Newly Added</span>
+                    <h3>Premium 10 Marla Residence</h3>
+                    <p>DHA Lahore - Phase 6</p>
+                    <div class="listing-price">Inquire for Price</div>
+                    <a href="https://wa.me/923225223620?text=Interested in 10 Marla Residence" class="nav-cta" style="display: block; text-align: center;">View Details</a>
+                </div>
+            </div>
+            <div class="listing-card gsap-reveal">
+                <img src="one_kanal_house.png" alt="1 Kanal Luxury Mansion" class="listing-img">
+                <div class="listing-content">
+                    <span class="listing-tag">Elite Portfolio</span>
+                    <h3>Elite 1 Kanal Mansion</h3>
+                    <p>Main Boulevard - Gulberg</p>
+                    <div class="listing-price">Inquire for Price</div>
+                    <a href="https://wa.me/923225223620?text=Interested in 1 Kanal Mansion" class="nav-cta" style="display: block; text-align: center;">View Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="shorts-section">
+        <div class="section-header">
+            <h2>Real Estate <span style="opacity: 0.5;">Insights</span></h2>
+            <p>Popular updates and property tours from our channel.</p>
+        </div>
+        <div class="shorts-scroll-wrapper">
+            <div class="short-card gsap-reveal">
+                <iframe src="https://www.youtube.com/embed/Bj3noAfBDww" title="Khas Properties Short" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="short-card gsap-reveal">
+                <iframe src="https://www.youtube.com/embed/FnBuiRXs1XM" title="Khas Properties Short" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="short-card gsap-reveal">
+                <iframe src="https://www.youtube.com/embed/YoSoXksJJg4" title="Khas Properties Short" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <div class="short-card gsap-reveal">
+                <iframe src="https://www.youtube.com/embed/wfQ-8mPK9uI" title="Khas Properties Short" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="section-header">
+            <h2>Our <span style="opacity: 0.5;">Expertise</span></h2>
+            <p>Comprehensive solutions for property owners and investors.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-box gsap-reveal">
+                <i class="fas fa-handshake"></i>
+                <h3>Property Sales</h3>
+                <p>Maximize your property's value with our elite network and marketing strategies.</p>
+            </div>
+            <div class="service-box gsap-reveal">
+                <i class="fas fa-tasks"></i>
+                <h3>Management</h3>
+                <p>Professional property management ensuring hassle-free ownership and optimal returns.</p>
+            </div>
+            <div class="service-box gsap-reveal">
+                <i class="fas fa-chart-line"></i>
+                <h3>Investment Advice</h3>
+                <p>Data-driven consultation to build a high-yield real estate portfolio in Lahore.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="reviews">
+        <div class="section-header">
+            <h2>Client <span style="opacity: 0.5;">Success</span></h2>
+            <p>What our valued partners say about working with Khas Properties.</p>
+        </div>
+        <div class="review-grid">
+            <div class="review-card gsap-reveal">
+                <p>"The most professional team in Gulberg. They managed my commercial property sale with incredible efficiency and transparency."</p>
+                <div class="reviewer">
+                    <i class="fas fa-user-circle" style="font-size: 2.5rem;"></i>
+                    <div>
+                        <h4>Ali Raza</h4>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-card gsap-reveal">
+                <p>"I've been working with Khas Properties for my investments in DHA. Their market analysis is spot on every single time."</p>
+                <div class="reviewer">
+                    <i class="fas fa-user-circle" style="font-size: 2.5rem;"></i>
+                    <div>
+                        <h4>Saad Ahmed</h4>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-card gsap-reveal">
+                <p>"Exceptional service. They didn't just sell me a house; they guided me through the entire legal and management process."</p>
+                <div class="reviewer">
+                    <i class="fas fa-user-circle" style="font-size: 2.5rem;"></i>
+                    <div>
+                        <h4>Fatima Sheikh</h4>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-card gsap-reveal">
+                <p>"The team at Khas Properties is incredibly knowledgeable about the Lahore market. Highly recommended for property management."</p>
+                <div class="reviewer">
+                    <i class="fas fa-user-circle" style="font-size: 2.5rem;"></i>
+                    <div>
+                        <h4>Hamza Malik</h4>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+            <div class="review-card gsap-reveal">
+                <p>"Fast, transparent, and professional. They helped me find the perfect plot for my new office in Gulberg."</p>
+                <div class="reviewer">
+                    <i class="fas fa-user-circle" style="font-size: 2.5rem;"></i>
+                    <div>
+                        <h4>Zainab Bibi</h4>
+                        <div class="stars">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>KHAS PROPERTIES</h3>
+                <p>Providing premium real estate services in Lahore for over a decade. Trust, transparency, and excellence in every transaction.</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/khasproperties/" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.youtube.com/@khasproperties/shorts" target="_blank"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Contact Us</h4>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> Gulberg, Lahore, Pakistan, 54000</li>
+                    <li><i class="fas fa-phone" style="margin-right: 10px;"></i> 0322 5223620</li>
+                    <li><i class="fas fa-envelope" style="margin-right: 10px;"></i> info@khasproperties.pk</li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#">Featured Properties</a></li>
+                    <li><a href="#">Our Services</a></li>
+                    <li><a href="#">Market Insights</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div style="text-align: center; color: var(--text-dim); padding-top: 50px; border-top: 1px solid var(--glass-border);">
+            &copy; 2026 Khas Properties Pvt. Ltd. All Rights Reserved.
+        </div>
+    </footer>
+
+    <a href="https://wa.me/923225223620" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Animations
+        gsap.from(".gsap-hero", {
+            y: 100,
+            opacity: 0,
+            duration: 1.2,
+            stagger: 0.3,
+            ease: "power4.out"
+        });
+
+        // Reveal Animations
+        gsap.utils.toArray(".gsap-reveal").forEach(el => {
+            gsap.from(el, {
+                scrollTrigger: {
+                    trigger: el,
+                    start: "top 85%",
+                },
+                y: 50,
+                opacity: 0,
+                duration: 1,
+                ease: "power3.out"
+            });
+        });
+
+        // Header Change on Scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.padding = '0.8rem 5%';
+                header.style.background = 'rgba(5, 5, 5, 0.9)';
+            } else {
+                header.style.padding = '1.2rem 5%';
+                header.style.background = 'rgba(5, 5, 5, 0.7)';
+            }
+        });
+    </script>
+</body>
+</html>
